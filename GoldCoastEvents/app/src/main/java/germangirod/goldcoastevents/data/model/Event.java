@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Event {
 
-    public String eventName;
+    public String eventTitle;
     public String eventDescription;
     public String eventLink;
     public String eventImageUrl;
@@ -26,8 +26,8 @@ public class Event {
     public Date startDate;
     public Date $endDate;
 
-    public String getEventName() {
-        return eventName;
+    public String getEventTitle() {
+        return eventTitle;
     }
 
     public String getEventDescription() {
