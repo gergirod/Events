@@ -4,6 +4,7 @@ import germangirod.goldcoastevents.BuildConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by germangirod on 4/8/16.
@@ -26,7 +27,8 @@ public class RestClient {
 
     private static void setupRestClient() {
 
-        Retrofit builder = new Retrofit.Builder().baseUrl(BuildConfig.API_ROOT).client(createOkHttpClient()).build();
+        Retrofit builder = new Retrofit.Builder().baseUrl(BuildConfig.API_ROOT).client(createOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create()).build();
 
         REST_Client = builder.create(Api.class);
     }
