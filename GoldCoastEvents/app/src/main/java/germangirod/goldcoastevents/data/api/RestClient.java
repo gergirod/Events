@@ -1,4 +1,4 @@
-package germangirod.goldcoastevents.data;
+package germangirod.goldcoastevents.data.api;
 
 import germangirod.goldcoastevents.BuildConfig;
 import okhttp3.OkHttpClient;
