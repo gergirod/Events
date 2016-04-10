@@ -10,15 +10,12 @@ import rx.Observable;
  */
 public interface Api {
 
-    @GET("/getEvents.php")
-    Observable<EventResponse> getEvents();
+    @GET("api/getEvents.php") Observable<EventResponse> getEvents();
 
-    @GET("/getEventsByCategory.php")
-    Observable<EventResponse> getEventsByCategory(@Query("category") String category);
+    @GET("/getEventsByCategory.php") Observable<EventResponse> getEventsByCategory(@Query("category") String category);
 
-    @GET("/getEventsByCategoryAndDate.php")
-    Observable<EventResponse> getEventsByCategoryAndDate(@Query("category") String category, @Query("date") String date);
+    @GET("/getEventsByCategoryAndDate.php") Observable<EventResponse> getEventsByCategoryAndDate(@Query("category") String category,
+            @Query("date") String date);
 
-    @GET("/getEventsByDate.php")
-    Observable<EventResponse> getEventsByDate(@Query("date") String date);
+    @GET("/getEventsByDate.php") Observable<EventResponse> getEventsByDate(@Query("date") String date);
 }

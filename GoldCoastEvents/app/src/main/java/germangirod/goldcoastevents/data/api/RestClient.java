@@ -4,6 +4,7 @@ import germangirod.goldcoastevents.BuildConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -27,17 +28,19 @@ public class RestClient {
 
     private static void setupRestClient() {
 
-        Retrofit builder = new Retrofit.Builder().baseUrl(BuildConfig.API_ROOT).client(createOkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit builder = new Retrofit.Builder().baseUrl(BuildConfig.API_ROOT)
+                .client(createOkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
 
         REST_Client = builder.create(Api.class);
     }
 
-    private  static OkHttpClient createOkHttpClient(){
+    private static OkHttpClient createOkHttpClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         return client;
     }
-
 }
