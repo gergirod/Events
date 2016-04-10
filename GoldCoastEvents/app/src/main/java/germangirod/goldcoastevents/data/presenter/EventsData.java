@@ -12,14 +12,57 @@ import rx.schedulers.Schedulers;
 public class EventsData {
 
     private EventsPresenter eventsPresenter;
+    private EventsApi eventsApi;
 
-    public void setView(EventsPresenter eventsPresenter){
+    public EventsData() {
+        eventsApi = new EventsApi();
+    }
+
+    public void setView(EventsPresenter eventsPresenter) {
         this.eventsPresenter = eventsPresenter;
     }
 
-    public void getEvents(){
-        EventsApi eventsApi = new EventsApi();
-        eventsApi.getEvents()
+    public void getEvents() {
+        eventsApi.getEvents().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<EventResponse>() {
+            @Override public void call(EventResponse eventResponse) {
+                eventsPresenter.showEvents(eventResponse);
+            }
+        }, new Action1<Throwable>() {
+            @Override public void call(Throwable throwable) {
+                eventsPresenter.showError(throwable);
+            }
+        });
+    }
+
+    public void getEventsByDate(String date) {
+
+        eventsApi.getEventsByDate(date).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<EventResponse>() {
+            @Override public void call(EventResponse eventResponse) {
+                eventsPresenter.showEvents(eventResponse);
+            }
+        }, new Action1<Throwable>() {
+            @Override public void call(Throwable throwable) {
+                eventsPresenter.showError(throwable);
+            }
+        });
+    }
+
+    public void getEventsByCategory(String category) {
+
+        eventsApi.getEventsByCategory(category).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<EventResponse>() {
+            @Override public void call(EventResponse eventResponse) {
+                eventsPresenter.showEvents(eventResponse);
+            }
+        }, new Action1<Throwable>() {
+            @Override public void call(Throwable throwable) {
+                eventsPresenter.showError(throwable);
+            }
+        });
+    }
+
+    public void getEventsByCategoryAndDate(String category, String date) {
+
+        eventsApi.getEventByCategoryAndDate(category, date)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<EventResponse>() {
@@ -31,17 +74,5 @@ public class EventsData {
                         eventsPresenter.showError(throwable);
                     }
                 });
-    }
-
-    public void getEventsByDate(){
-
-    }
-
-    public void getEventsByCategory(){
-
-    }
-
-    public void getEventsByCategoryAndDate(){
-        
     }
 }
