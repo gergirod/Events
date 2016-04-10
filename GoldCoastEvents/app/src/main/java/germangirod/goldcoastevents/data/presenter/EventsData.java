@@ -32,4 +32,16 @@ public class EventsData {
                     }
                 });
     }
+
+    public void getEventsByDate(){
+
+    }
+
+    public void getEventsByCategory(){
+
+    }
+
+    public void getEventsByCategoryAndDate(){
+        
+    }
 }
