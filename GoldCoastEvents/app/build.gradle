@@ -10,6 +10,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "API_ROOT", "\"http://www.gpgourmet.com.ar/\""
+
     }
     buildTypes {
         release {
@@ -22,4 +24,16 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
+
+    //api
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'io.reactivex:rxjava:1.0.10'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+    compile 'com.google.code.gson:gson:2.5'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.retrofit2:retrofit-converters:2.0.0-beta3'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
+    compile'io.reactivex:rxandroid:1.0.1'
+
 }
