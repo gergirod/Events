@@ -5,12 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import germangirod.goldcoastevents.R;
+import germangirod.goldcoastevents.data.model.EventResponse;
+import germangirod.goldcoastevents.data.presenter.EventsPresenter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EventsPresenter {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,5 +37,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override public void showEvents(EventResponse eventResponse) {
+    }
+
+    @Override public void showError(Throwable throwable) {
     }
 }

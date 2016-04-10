@@ -12,10 +12,10 @@ public interface Api {
 
     @GET("api/getEvents.php") Observable<EventResponse> getEvents();
 
-    @GET("/getEventsByCategory.php") Observable<EventResponse> getEventsByCategory(@Query("category") String category);
+    @GET("api/getEventsByCategory.php") Observable<EventResponse> getEventsByCategory(@Query("category") String category);
 
-    @GET("/getEventsByCategoryAndDate.php") Observable<EventResponse> getEventsByCategoryAndDate(@Query("category") String category,
+    @GET("api/getEventsByCategoryAndDate.php") Observable<EventResponse> getEventsByCategoryAndDate(@Query("category") String category,
             @Query("date") String date);
 
-    @GET("/getEventsByDate.php") Observable<EventResponse> getEventsByDate(@Query("date") String date);
+    @GET("api/getEventsByDate.php") Observable<EventResponse> getEventsByDate(@Query("date") String date);
 }
