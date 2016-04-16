@@ -1,53 +1,151 @@
 package germangirod.goldcoastevents.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
+import android.widget.Toast;
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
 import germangirod.goldcoastevents.R;
 import germangirod.goldcoastevents.data.model.EventResponse;
 import germangirod.goldcoastevents.data.presenter.EventsPresenter;
-import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements EventsPresenter, AdapterView.OnItemSelectedListener,
-        com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+public class MainActivity extends AppCompatActivity implements EventsPresenter {
 
-    private Spinner spinner;
-    private LinearLayout dateButton;
+
+
+    private MaterialViewPager mViewPager;
+    private DrawerLayout mDrawer;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private Toolbar toolbar;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setWidgets();
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.planets_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd = DatePickerDialog.newInstance(MainActivity.this, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
-                dpd.show(getFragmentManager(), "Datepickerdialog");
+        toolbar = mViewPager.getToolbar();
+        toolbar.setTitle("");
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+
+            final ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+                actionBar.setDisplayShowTitleEnabled(true);
+                actionBar.setDisplayUseLogoEnabled(false);
+                actionBar.setHomeButtonEnabled(true);
+            }
+        }
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, 0, 0);
+        mDrawer.setDrawerListener(mDrawerToggle);
+
+        mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+
+            @Override
+            public Fragment getItem(int position) {
+                switch (position % 8) {
+                    //case 0:
+                    //    return RecyclerViewFragment.newInstance();
+                    //case 1:
+                    //    return RecyclerViewFragment.newInstance();
+                    //case 2:
+                    //    return WebViewFragment.newInstance();
+                    default:
+                        return RecyclerViewFragment.newInstance();
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 8;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                switch (position % 8) {
+                    case 0:
+                        return "Active & Healthy";
+                    case 1:
+                        return "Art & Culture";
+                    case 2:
+                        return "Family & Children";
+                    case 3:
+                        return "Food & Wine";
+                    case 4:
+                        return "General";
+                    case 5:
+                        return "Music";
+                    case 6:
+                        return "Sports & Recreation";
+                    case 7:
+                        return "Seniors";
+                }
+                return "";
             }
         });
+
+        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+            @Override public HeaderDesign getHeaderDesign(int page) {
+                switch (page) {
+                    case 0:
+                        return HeaderDesign.fromColorResAndUrl(R.color.green, "http://www.eatcleanlivehealthy.com/wp-content/uploads/2011/01/become-more-active.jpg");
+                    case 1:
+                        return HeaderDesign.fromColorResAndUrl(R.color.blue, "http://www.lakecitysc.com/images/uploads/gallery/arts.jpg");
+                    case 2:
+                        return HeaderDesign.fromColorResAndUrl(R.color.cyan, "http://blog.twobrightlights.com/wp-content/uploads/2013/10/48982/Pauley__Whimsey_Photography_by_Cana_176112_Pauley58.jpg");
+                    case 3:
+                        return HeaderDesign.fromColorResAndUrl(R.color.red, "http://notjustwines.com.au/wp-content/uploads/2013/06/food-and-wine2.jpg");
+                    case 4:
+                        return HeaderDesign.fromColorResAndUrl(R.color.green, "http://www.crowneplazasurfersparadise.com.au/wp-content/uploads/2013/04/Skyline-04.jpg");
+                    case 5:
+                        return HeaderDesign.fromColorResAndUrl(R.color.blue, "http://cdn02.masterstudies.com/element_db/52/5261_Electronics_Music_Production_pic_1.jpg");
+                    case 6:
+                        return HeaderDesign.fromColorResAndUrl(R.color.cyan, "http://media.supercheapauto.com.au/sca/images/articles/Coolangatta%20Surf_crop.jpg");
+                    case 7:
+                        return HeaderDesign.fromColorResAndUrl(R.color.red, "http://www.markgray.com.au/images/gallery/large/desert-light.jpg");
+
+                }
+
+                //execute others actions if needed (ex : modify your header logo)
+
+                return null;
+            }
+        });
+
+        mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
+        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
+
+        View logo = findViewById(R.id.logo_white);
+        if (logo != null)
+            logo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mViewPager.notifyHeaderChanged();
+                    Toast.makeText(getApplicationContext(), "Yes, the title is clickable", Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
+
+
+
     private void setWidgets(){
-        spinner = (Spinner) findViewById(R.id.planets_spinner);
-        dateButton = (LinearLayout) findViewById(R.id.dateButton);
+        //spinner = (Spinner) findViewById(R.id.planets_spinner);
+        //dateButton = (LinearLayout) findViewById(R.id.dateButton);
     }
 
     @Override protected void onResume() {
@@ -78,25 +176,5 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter, 
     }
 
     @Override public void showError(Throwable throwable) {
-    }
-
-    @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    @Override public void onDateSet(DatePickerDialog datePickerDialog, int i, int i1, int i2) {
-
-        Log.e("mirar esto ","mirar "+i);
-        Log.e("mirar esto ","mirar "+i1);
-        Log.e("mirar esto ","mirar "+i2);
-
-    }
-
-    @Override public void onTimeSet(RadialPickerLayout radialPickerLayout, int i, int i1, int i2) {
-
     }
 }
