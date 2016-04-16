@@ -1,5 +1,6 @@
 package germangirod.goldcoastevents.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startActivity(new Intent(this, DetailActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

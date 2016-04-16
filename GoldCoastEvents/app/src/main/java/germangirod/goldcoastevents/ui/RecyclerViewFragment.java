@@ -2,6 +2,7 @@ package germangirod.goldcoastevents.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapte
 import germangirod.goldcoastevents.R;
 import java.util.ArrayList;
 import java.util.List;
-import android.support.v4.app.Fragment;
 /**
  * Created by germangirod on 4/15/16.
  */
@@ -52,6 +52,7 @@ public class RecyclerViewFragment extends Fragment {
         }
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
+
     }
 
 }
