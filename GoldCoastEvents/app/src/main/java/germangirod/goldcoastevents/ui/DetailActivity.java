@@ -3,6 +3,7 @@ package germangirod.goldcoastevents.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import germangirod.goldcoastevents.R;
+import germangirod.goldcoastevents.ui.fragments.DetailFragment;
 
 /**
  * Created by germangirod on 4/17/16.

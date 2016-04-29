@@ -1,4 +1,4 @@
-package germangirod.goldcoastevents.ui;
+package germangirod.goldcoastevents.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

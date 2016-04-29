@@ -1,4 +1,4 @@
-package germangirod.goldcoastevents.ui;
+package germangirod.goldcoastevents.ui.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,10 +15,11 @@ import germangirod.goldcoastevents.data.model.Event;
 import germangirod.goldcoastevents.ui.adapters.EventsAdapter;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by germangirod on 4/15/16.
  */
-public class RecyclerViewFragment extends Fragment {
+public class GeneralEventFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -27,8 +28,8 @@ public class RecyclerViewFragment extends Fragment {
 
     private List<Event> events = new ArrayList<>();
 
-    public static RecyclerViewFragment newInstance() {
-        return new RecyclerViewFragment();
+    public static GeneralEventFragment newInstance() {
+        return new GeneralEventFragment();
     }
 
     @Override
@@ -44,7 +45,7 @@ public class RecyclerViewFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new RecyclerViewMaterialAdapter(new EventsAdapter(events));
+        mAdapter = new RecyclerViewMaterialAdapter(new EventsAdapter(events,getActivity()));
         mRecyclerView.setAdapter(mAdapter);
 
         {
