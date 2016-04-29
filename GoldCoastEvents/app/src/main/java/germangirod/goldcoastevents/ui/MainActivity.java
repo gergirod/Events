@@ -15,9 +15,18 @@ import android.view.View;
 import android.widget.Toast;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
+import germangirod.goldcoastevents.Constants;
 import germangirod.goldcoastevents.R;
 import germangirod.goldcoastevents.data.model.EventResponse;
 import germangirod.goldcoastevents.data.presenter.EventsPresenter;
+import germangirod.goldcoastevents.ui.fragments.ActiveEventFragment;
+import germangirod.goldcoastevents.ui.fragments.ArtEventFragment;
+import germangirod.goldcoastevents.ui.fragments.FamilyEventFragment;
+import germangirod.goldcoastevents.ui.fragments.FoodEventFragment;
+import germangirod.goldcoastevents.ui.fragments.GeneralEventFragment;
+import germangirod.goldcoastevents.ui.fragments.MusicEventFragment;
+import germangirod.goldcoastevents.ui.fragments.SeniorEventFragment;
+import germangirod.goldcoastevents.ui.fragments.SportEventFragment;
 
 public class MainActivity extends AppCompatActivity implements EventsPresenter {
 
@@ -58,13 +67,23 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter {
 
             @Override
             public Fragment getItem(int position) {
-                switch (position % 8) {
-                    //case 0:
-                    //    return RecyclerViewFragment.newInstance();
-                    //case 1:
-                    //    return RecyclerViewFragment.newInstance();
-                    //case 2:
-                    //    return WebViewFragment.newInstance();
+                switch (position) {
+                    case 0:
+                       return ActiveEventFragment.newInstance();
+                    case 1:
+                        return ArtEventFragment.newInstance();
+                    case 2:
+                        return FamilyEventFragment.newInstance();
+                    case 3:
+                        return FoodEventFragment.newInstance();
+                    case 4:
+                        return GeneralEventFragment.newInstance();
+                    case 5:
+                        return MusicEventFragment.newInstance();
+                    case 6:
+                        return SportEventFragment.newInstance();
+                    case 7:
+                        return SeniorEventFragment.newInstance();
                     default:
                         return RecyclerViewFragment.newInstance();
                 }
@@ -79,21 +98,21 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter {
             public CharSequence getPageTitle(int position) {
                 switch (position % 8) {
                     case 0:
-                        return "Active & Healthy";
+                        return Constants.ACTIVE_CATEGORY;
                     case 1:
-                        return "Art & Culture";
+                        return Constants.ART_CATEGORY;
                     case 2:
-                        return "Family & Children";
+                        return Constants.FAMILY_CATEGORY;
                     case 3:
-                        return "Food & Wine";
+                        return Constants.FOOD_CATEGORY;
                     case 4:
-                        return "General";
+                        return Constants.GENERAL_CATEGORY;
                     case 5:
-                        return "Music";
+                        return Constants.MUSIC_CATEGORY;
                     case 6:
-                        return "Sports & Recreation";
+                        return Constants.SPORT_CATEGORY;
                     case 7:
-                        return "Seniors";
+                        return Constants.SENIOR_CATEGORY;
                 }
                 return "";
             }

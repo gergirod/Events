@@ -10,8 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
+import germangirod.goldcoastevents.Constants;
 import germangirod.goldcoastevents.R;
+import germangirod.goldcoastevents.data.api.EventsApi;
 import germangirod.goldcoastevents.data.model.Event;
+import germangirod.goldcoastevents.data.model.EventResponse;
+import germangirod.goldcoastevents.data.presenter.EventsData;
+import germangirod.goldcoastevents.data.presenter.EventsPresenter;
 import germangirod.goldcoastevents.ui.adapters.EventsAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +24,11 @@ import java.util.List;
 /**
  * Created by germangirod on 4/15/16.
  */
-public class GeneralEventFragment extends Fragment {
+public class GeneralEventFragment extends Fragment implements EventsPresenter {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private EventsApi eventsApi;
 
     private static final int ITEM_COUNT = 20;
 
@@ -44,18 +50,27 @@ public class GeneralEventFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-
-        mAdapter = new RecyclerViewMaterialAdapter(new EventsAdapter(events,getActivity()));
-        mRecyclerView.setAdapter(mAdapter);
-
-        {
-            for (int i = 0; i < ITEM_COUNT; ++i)
-                events.add(new Event());
-            mAdapter.notifyDataSetChanged();
-        }
-
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
 
     }
 
+    @Override public void onResume() {
+        super.onResume();
+        getEventData();
+
+    }
+
+    private void getEventData(){
+        EventsData eventsData = new EventsData();
+        eventsData.getEventsByCategory(Constants.GENERAL_CATEGORY);
+    }
+
+    @Override public void showEvents(EventResponse eventResponse) {
+        mAdapter = new RecyclerViewMaterialAdapter(new EventsAdapter(eventResponse.getEvents(),getActivity()));
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override public void showError(Throwable throwable) {
+
+    }
 }
