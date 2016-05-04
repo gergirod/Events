@@ -48,7 +48,6 @@ public class EventsData {
     }
 
     public void getEventsByCategory(String category) {
-
         eventsApi.getEventsByCategory(category).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<EventResponse>() {
             @Override public void call(EventResponse eventResponse) {
                 eventsPresenter.showEvents(eventResponse);

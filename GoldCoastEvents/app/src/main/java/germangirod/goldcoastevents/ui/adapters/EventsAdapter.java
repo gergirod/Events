@@ -41,7 +41,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventRowHo
     @Override public void onBindViewHolder(EventRowHolder holder, int position) {
 
         Picasso.with((context)).load(events.get(position).getEventImageUrl()).into(holder.eventImage);
-        holder.eventDate.setText(events.get(position).getDetailDate());
+        holder.eventDate.setText(events.get(position).getEventDate());
         holder.eventName.setText(events.get(position).getEventTitle());
         holder.eventDescription.setText(events.get(position).getEventDescription());
     }

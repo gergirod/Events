@@ -30,8 +30,6 @@ import germangirod.goldcoastevents.ui.fragments.SportEventFragment;
 
 public class MainActivity extends AppCompatActivity implements EventsPresenter {
 
-
-
     private MaterialViewPager mViewPager;
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -65,11 +63,10 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter {
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
-            @Override
-            public Fragment getItem(int position) {
+            @Override public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                       return ActiveEventFragment.newInstance();
+                        return ActiveEventFragment.newInstance();
                     case 1:
                         return ArtEventFragment.newInstance();
                     case 2:
@@ -85,18 +82,16 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter {
                     case 7:
                         return SeniorEventFragment.newInstance();
                     default:
-                        return RecyclerViewFragment.newInstance();
+                        return null;
                 }
             }
 
-            @Override
-            public int getCount() {
+            @Override public int getCount() {
                 return 8;
             }
 
-            @Override
-            public CharSequence getPageTitle(int position) {
-                switch (position % 8) {
+            @Override public CharSequence getPageTitle(int position) {
+                switch (position) {
                     case 0:
                         return Constants.ACTIVE_CATEGORY;
                     case 1:
@@ -122,22 +117,26 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter {
             @Override public HeaderDesign getHeaderDesign(int page) {
                 switch (page) {
                     case 0:
-                        return HeaderDesign.fromColorResAndUrl(R.color.green, "http://www.eatcleanlivehealthy.com/wp-content/uploads/2011/01/become-more-active.jpg");
+                        return HeaderDesign.fromColorResAndUrl(R.color.green,
+                                "http://www.eatcleanlivehealthy.com/wp-content/uploads/2011/01/become-more-active.jpg");
                     case 1:
                         return HeaderDesign.fromColorResAndUrl(R.color.blue, "http://www.lakecitysc.com/images/uploads/gallery/arts.jpg");
                     case 2:
-                        return HeaderDesign.fromColorResAndUrl(R.color.cyan, "http://blog.twobrightlights.com/wp-content/uploads/2013/10/48982/Pauley__Whimsey_Photography_by_Cana_176112_Pauley58.jpg");
+                        return HeaderDesign.fromColorResAndUrl(R.color.cyan,
+                                "http://blog.twobrightlights.com/wp-content/uploads/2013/10/48982/Pauley__Whimsey_Photography_by_Cana_176112_Pauley58.jpg");
                     case 3:
                         return HeaderDesign.fromColorResAndUrl(R.color.red, "http://notjustwines.com.au/wp-content/uploads/2013/06/food-and-wine2.jpg");
                     case 4:
-                        return HeaderDesign.fromColorResAndUrl(R.color.green, "http://www.crowneplazasurfersparadise.com.au/wp-content/uploads/2013/04/Skyline-04.jpg");
+                        return HeaderDesign.fromColorResAndUrl(R.color.green,
+                                "http://www.crowneplazasurfersparadise.com.au/wp-content/uploads/2013/04/Skyline-04.jpg");
                     case 5:
-                        return HeaderDesign.fromColorResAndUrl(R.color.blue, "http://cdn02.masterstudies.com/element_db/52/5261_Electronics_Music_Production_pic_1.jpg");
+                        return HeaderDesign.fromColorResAndUrl(R.color.blue,
+                                "http://cdn02.masterstudies.com/element_db/52/5261_Electronics_Music_Production_pic_1.jpg");
                     case 6:
-                        return HeaderDesign.fromColorResAndUrl(R.color.cyan, "http://media.supercheapauto.com.au/sca/images/articles/Coolangatta%20Surf_crop.jpg");
+                        return HeaderDesign.fromColorResAndUrl(R.color.cyan,
+                                "http://media.supercheapauto.com.au/sca/images/articles/Coolangatta%20Surf_crop.jpg");
                     case 7:
                         return HeaderDesign.fromColorResAndUrl(R.color.red, "http://www.markgray.com.au/images/gallery/large/desert-light.jpg");
-
                 }
 
                 //execute others actions if needed (ex : modify your header logo)
@@ -150,22 +149,14 @@ public class MainActivity extends AppCompatActivity implements EventsPresenter {
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
         View logo = findViewById(R.id.logo_white);
-        if (logo != null)
+        if (logo != null) {
             logo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                @Override public void onClick(View v) {
                     mViewPager.notifyHeaderChanged();
                     Toast.makeText(getApplicationContext(), "Yes, the title is clickable", Toast.LENGTH_SHORT).show();
                 }
             });
-    }
-
-
-
-
-    private void setWidgets(){
-        //spinner = (Spinner) findViewById(R.id.planets_spinner);
-        //dateButton = (LinearLayout) findViewById(R.id.dateButton);
+        }
     }
 
     @Override protected void onResume() {

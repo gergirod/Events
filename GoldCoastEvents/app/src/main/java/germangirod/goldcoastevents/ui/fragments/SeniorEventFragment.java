@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import germangirod.goldcoastevents.Constants;
@@ -24,6 +25,7 @@ public class SeniorEventFragment extends Fragment implements EventsPresenter {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private ProgressBar progressBar;
 
     public static SeniorEventFragment newInstance() {
         return new SeniorEventFragment();
@@ -31,8 +33,9 @@ public class SeniorEventFragment extends Fragment implements EventsPresenter {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_recyclerview, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
+        progressBar = (ProgressBar)view.findViewById(R.id.progressBar);
+        return  view;    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -53,15 +56,17 @@ public class SeniorEventFragment extends Fragment implements EventsPresenter {
 
     private void getEventData(){
         EventsData eventsData = new EventsData();
+        eventsData.setView(this);
         eventsData.getEventsByCategory(Constants.SENIOR_CATEGORY);
     }
 
     @Override public void showEvents(EventResponse eventResponse) {
+        progressBar.setVisibility(View.GONE);
         mAdapter = new RecyclerViewMaterialAdapter(new EventsAdapter(eventResponse.getEvents(),getActivity()));
         mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override public void showError(Throwable throwable) {
-
+        progressBar.setVisibility(View.GONE);
     }
 }
