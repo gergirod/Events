@@ -27,11 +27,11 @@ public class Event {
     public Date $endDate;
 
     public String getEventTitle() {
-        return eventTitle;
+        return replaceRareCharsets(eventTitle);
     }
 
     public String getEventDescription() {
-        return eventDescription;
+        return replaceRareCharsets(eventDescription);
     }
 
     public String getEventLink() {
@@ -96,5 +96,18 @@ public class Event {
 
     public String getCost() {
         return cost;
+    }
+
+    private String replaceRareCharsets(String s) {
+        if (s.indexOf("&#38;") != -1) {
+
+            return s.replace("&#38;", "and");
+        }
+        if(s.indexOf("&amp")!=-1){
+
+            return s.replace("&amp", "and");
+        }
+
+        return s;
     }
 }
