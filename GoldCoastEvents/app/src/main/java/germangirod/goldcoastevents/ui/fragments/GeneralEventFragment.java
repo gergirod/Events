@@ -13,28 +13,19 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import germangirod.goldcoastevents.Constants;
 import germangirod.goldcoastevents.R;
-import germangirod.goldcoastevents.data.api.EventsApi;
-import germangirod.goldcoastevents.data.model.Event;
 import germangirod.goldcoastevents.data.model.EventResponse;
 import germangirod.goldcoastevents.data.presenter.EventsData;
 import germangirod.goldcoastevents.data.presenter.EventsPresenter;
 import germangirod.goldcoastevents.ui.adapters.EventsAdapter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by germangirod on 4/15/16.
  */
-public class GeneralEventFragment extends Fragment implements EventsPresenter {
+public class GeneralEventFragment extends Fragment implements EventsPresenter, EventsAdapter.RowClick {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private EventsApi eventsApi;
     private ProgressBar progressBar;
-
-    private static final int ITEM_COUNT = 20;
-
-    private List<Event> events = new ArrayList<>();
 
     public static GeneralEventFragment newInstance() {
         return new GeneralEventFragment();
@@ -71,11 +62,17 @@ public class GeneralEventFragment extends Fragment implements EventsPresenter {
 
     @Override public void showEvents(EventResponse eventResponse) {
         progressBar.setVisibility(View.GONE);
-        mAdapter = new RecyclerViewMaterialAdapter(new EventsAdapter(eventResponse.getEvents(),getActivity()));
+        EventsAdapter eventsAdapter = new EventsAdapter(eventResponse.getEvents(), getActivity());
+        eventsAdapter.setRowClick(this);
+        mAdapter = new RecyclerViewMaterialAdapter(eventsAdapter);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override public void showError(Throwable throwable) {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override public void onRowClick(View v, int position) {
+
     }
 }

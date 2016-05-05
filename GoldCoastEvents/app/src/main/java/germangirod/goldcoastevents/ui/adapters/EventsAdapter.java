@@ -19,6 +19,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventRowHo
 
     List<Event> events;
     Context context;
+    private RowClick rowClick;
 
     public EventsAdapter(List<Event> events, Context context) {
         this.events = events;
@@ -46,6 +47,15 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventRowHo
         holder.eventDescription.setText(events.get(position).getEventDescription());
     }
 
+    public void setRowClick(RowClick rowClick) {
+        this.rowClick = rowClick;
+    }
+
+    public interface RowClick {
+
+        void onRowClick(View v, int position);
+    }
+
     public class EventRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView eventImage;
@@ -64,6 +74,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventRowHo
 
         @Override public void onClick(View v) {
 
+            rowClick.onRowClick(v, getPosition());
         }
     }
 }

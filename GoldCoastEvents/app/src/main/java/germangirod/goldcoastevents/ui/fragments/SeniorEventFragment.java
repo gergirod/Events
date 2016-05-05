@@ -21,7 +21,7 @@ import germangirod.goldcoastevents.ui.adapters.EventsAdapter;
 /**
  * Created by germangirod on 4/15/16.
  */
-public class SeniorEventFragment extends Fragment implements EventsPresenter {
+public class SeniorEventFragment extends Fragment implements EventsPresenter, EventsAdapter.RowClick {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -62,11 +62,17 @@ public class SeniorEventFragment extends Fragment implements EventsPresenter {
 
     @Override public void showEvents(EventResponse eventResponse) {
         progressBar.setVisibility(View.GONE);
-        mAdapter = new RecyclerViewMaterialAdapter(new EventsAdapter(eventResponse.getEvents(),getActivity()));
+        EventsAdapter eventsAdapter = new EventsAdapter(eventResponse.getEvents(), getActivity());
+        eventsAdapter.setRowClick(this);
+        mAdapter = new RecyclerViewMaterialAdapter(eventsAdapter);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override public void showError(Throwable throwable) {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override public void onRowClick(View v, int position) {
+
     }
 }
