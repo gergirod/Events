@@ -5,5 +5,5 @@
         android:layout_height="@dimen/materialviewpager_logoHeight"
         android:text="Gold Coast Events"
         android:textSize="30dp"
-        android:textColor="@color/mdtp_white"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/white"/>

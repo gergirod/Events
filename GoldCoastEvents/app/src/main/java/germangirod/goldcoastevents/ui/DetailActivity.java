@@ -6,7 +6,7 @@ import germangirod.goldcoastevents.R;
 import germangirod.goldcoastevents.ui.fragments.DetailFragment;
 
 /**
- * Created by germangirod on 4/17/16.
+ * Created by germangirod on 5/10/16.
  */
 public class DetailActivity extends Activity {
 
@@ -27,3 +27,6 @@ public class DetailActivity extends Activity {
         fragmentTransaction.commit();
     }
 }
+
+
+

@@ -30,12 +30,52 @@
                 android:layout_width="match_parent"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginBottom="-30dp"
+                android:layout_marginBottom="-55dp"
                 android:background="@android:color/white"
                 card_view:cardElevation="8dp"
                 card_view:cardCornerRadius="4dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:behavior_overlapTop="54dp">
+                app:behavior_overlapTop="80dp">
+
+                <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/event_name"
+                                android:layout_alignParentLeft="true"
+                                android:text="German Girod"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:layout_marginRight="7dp"
+                                android:textColor="@color/black_text"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/event_date"
+                                android:layout_alignParentLeft="true"
+                                android:text="26 of April"
+                                android:textSize="14sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_below="@id/event_name"/>
+
+                        <FrameLayout
+                                android:id="@+id/map"
+                                android:name="com.google.android.gms.maps.MapFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:layout_below="@id/event_date"
+                                android:layout_margin="7dp"/>
+
+
+                </RelativeLayout>
+
+
 
         </android.support.v7.widget.CardView>
 
