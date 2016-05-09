@@ -23,44 +23,59 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="10dp">
-                <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:id="@+id/event_image"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:background="@mipmap/ic_launcher"/>
 
-                <TextView
-                        android:layout_width="wrap_content"
+                <LinearLayout
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/event_date"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:text="26 of April"
-                        android:textSize="14sp"
-                        android:layout_marginTop="5dp"
-                        android:layout_toLeftOf="@id/event_image"
-                        android:layout_marginRight="7dp"/>
+                        android:orientation="vertical"
+                        android:id="@+id/imageAndTextContainer">
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/event_name"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@id/event_date"
-                        android:text="German Girod"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:layout_toLeftOf="@id/event_image"
-                        android:layout_marginRight="7dp"
-                        android:textColor="@color/black_text"/>
+                        <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                >
+                                <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
+                                        android:id="@+id/event_image"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentTop="true"
+                                        android:background="@mipmap/ic_launcher"/>
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/event_date"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_alignParentLeft="true"
+                                        android:text="26 of April"
+                                        android:textSize="14sp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_toLeftOf="@id/event_image"
+                                        android:layout_marginRight="7dp"/>
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/event_name"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_below="@id/event_date"
+                                        android:text="German Girod"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        android:layout_toLeftOf="@id/event_image"
+                                        android:layout_marginRight="7dp"
+                                        android:textColor="@color/black_text"/>
+
+                        </RelativeLayout>
+
+                </LinearLayout>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/event_description"
-                        android:layout_below="@id/event_image"
+                        android:layout_below="@id/imageAndTextContainer"
                         android:text="German girod is consider the new programming genius, he is travelling all around the world searching the biggest waves"
                         android:textSize="16sp"
                         android:layout_marginTop="7dp"/>

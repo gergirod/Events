@@ -1,5 +1,6 @@
 package germangirod.goldcoastevents.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import germangirod.goldcoastevents.R;
 import germangirod.goldcoastevents.data.model.EventResponse;
 import germangirod.goldcoastevents.data.presenter.EventsData;
 import germangirod.goldcoastevents.data.presenter.EventsPresenter;
+import germangirod.goldcoastevents.ui.DetailActivity;
 import germangirod.goldcoastevents.ui.adapters.EventsAdapter;
 
 /**
@@ -70,6 +72,9 @@ public abstract class EventFragmentManager extends Fragment implements EventsPre
     }
 
     @Override public void onRowClick(View v, int position) {
+
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        getActivity().startActivity(intent);
 
     }
 }
