@@ -5,8 +5,6 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -53,34 +51,23 @@ public class DetailFragment extends MapBaseFragment {
     @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.detail_fragment, container, false);
 
-        toolbar = (android.support.v7.widget.Toolbar) v.findViewById(R.id.toolbar);
+        //toolbar = (android.support.v7.widget.Toolbar) v.findViewById(R.id.toolbar);
         costTextView = (TextView) v.findViewById(R.id.costTextView);
         typeTextView = (TextView) v.findViewById(R.id.typeTextView);
         webTextView = (TextView) v.findViewById(R.id.webTextView);
         eventName = (TextView)v.findViewById(R.id.event_name);
         eventDescription = (TextView)v.findViewById(R.id.event_description);
         eventDate = (TextView)v.findViewById(R.id.event_date);
-        appBarLayout = (AppBarLayout)v.findViewById(R.id.appbar);
+        //appBarLayout = (AppBarLayout)v.findViewById(R.id.appbar);
 
-        appBarLayout.setExpanded(false);
+        //appBarLayout.setExpanded(false);
         getBundleData();
-        setToolbar();
         setMap();
 
         return v;
     }
 
-    private void setToolbar() {
 
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(event.getEventTitle());
-
-        }else{
-        }
-    }
 
     private void getBundleData() {
         Bundle arguments = getArguments();
