@@ -28,6 +28,7 @@ public abstract class EventFragmentManager extends Fragment implements EventsPre
     private RecyclerView.Adapter mAdapter;
     private ProgressBar progressBar;
     public EventsData eventsData;
+    private EventResponse eventResponse;
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
@@ -59,8 +60,9 @@ public abstract class EventFragmentManager extends Fragment implements EventsPre
 
 
     @Override public void showEvents(EventResponse eventResponse) {
+        this.eventResponse = eventResponse;
         progressBar.setVisibility(View.GONE);
-        EventsAdapter eventsAdapter = new EventsAdapter(eventResponse.getEvents(), getActivity());
+        EventsAdapter eventsAdapter = new EventsAdapter(this.eventResponse.getEvents(), getActivity());
         eventsAdapter.setRowClick(this);
         mAdapter = new RecyclerViewMaterialAdapter(eventsAdapter);
         mRecyclerView.setAdapter(mAdapter);
@@ -74,6 +76,7 @@ public abstract class EventFragmentManager extends Fragment implements EventsPre
     @Override public void onRowClick(View v, int position) {
 
         Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("event",this.eventResponse.getEvents().get(position));
         getActivity().startActivity(intent);
 
     }

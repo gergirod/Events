@@ -1,7 +1,7 @@
 package germangirod.goldcoastevents.ui.fragments;
 
 import android.view.View;
-import germangirod.goldcoastevents.Constants;
+import germangirod.goldcoastevents.util.Constants;
 
 /**
  * Created by germangirod on 4/15/16.

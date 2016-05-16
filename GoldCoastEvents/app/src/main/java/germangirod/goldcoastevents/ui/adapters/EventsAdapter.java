@@ -74,7 +74,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventRowHo
 
         @Override public void onClick(View v) {
 
-            rowClick.onRowClick(v, getPosition());
+            rowClick.onRowClick(v, getAdapterPosition()-1);
+
         }
     }
 }

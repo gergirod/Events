@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
-import germangirod.goldcoastevents.Constants;
+import germangirod.goldcoastevents.util.Constants;
 import germangirod.goldcoastevents.R;
 import germangirod.goldcoastevents.data.model.EventResponse;
 import germangirod.goldcoastevents.data.presenter.EventsPresenter;

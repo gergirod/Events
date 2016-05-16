@@ -1,4 +1,4 @@
-package germangirod.goldcoastevents;
+package germangirod.goldcoastevents.util;
 
 /**
  * Created by germangirod on 4/29/16.
